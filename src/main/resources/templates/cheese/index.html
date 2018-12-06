@@ -5,25 +5,32 @@
 <body class="container">
 
 <h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
-
 <p th:unless="${cheeses}">no cheese :(</p>
-
 
 <table class="table">
 
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Type</th>
+        <th>Category</th>
     </tr>
 
     <tr th:each="cheese : ${cheeses}">
-        <td th:text="${cheese.name}"></td>
-        <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.type.name}"></td>
-    </tr>
+
+        <div th:if="${categoryId} == null">
+            <td th:text="${cheese.name}"></td>
+            <td th:text="${cheese.description}"></td>
+            <td th:text="${cheese.category.getName()}"></td>
+        </div>
+
+        <div th:unless="${categoryId} == null">
+            <div th:if="${cheese.category.getId()} == ${categoryId}"><td th:text="${cheese.name}"></td></div>
+            <div th:if="${cheese.category.getId()} == ${categoryId}"><td th:text="${cheese.description}"></td></div>
+            <div th:if="${cheese.category.getId()} == ${categoryId}"><td th:text="${cheese.category.getName()}"></td></div>
+        </div>
+
+     </tr>
 
 </table>
 
