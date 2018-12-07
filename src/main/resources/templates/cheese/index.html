@@ -6,6 +6,7 @@
 
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
+
 <p th:unless="${cheeses}">no cheese :(</p>
 
 <table class="table">
@@ -33,6 +34,10 @@
      </tr>
 
 </table>
+<p></p>
+<a href="/cheese/add">Add</a> |
+<a href="/cheese/remove">Remove</a> |
+
 
 </body>
 </html>
